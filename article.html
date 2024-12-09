@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Article</title>
+</head>
+<body>
+    <header>
+        <h1>Article</h1>
+    </header>
+    <div id="article-content">
+        <textarea id="article-input" placeholder="Write your article here..." required></textarea>
+        <button id="post-article">Post Article</button>
+    </div>
+    <script>
+        document.getElementById('post-article').addEventListener('click', function() {
+            const articleContent = document.getElementById('article-input').value;
+            if (articleContent) {
+                // Save the article to local storage
+                let articles = JSON.parse(localStorage.getItem('articles')) || [];
+                articles.push(articleContent);
+                localStorage.setItem('articles', JSON.stringify(articles));
+                alert('Article posted!');
+                document.getElementById('article-input').value = ''; // Clear the input
+            } else {
+                alert('Please write an article before posting.');
+            }
+        });
+    </script>
+</body>
+</html>
